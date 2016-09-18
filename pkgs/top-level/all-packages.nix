@@ -17495,7 +17495,7 @@ in
 
     cedet = callPackage ../applications/editors/emacs-modes/cedet { };
 
-    calfw = callPackage ../applications/editors/emacs-modes/calfw { };
+    calfw = emacsPackagesNg.calfw;
 
     cedille = callPackage ../applications/editors/emacs-modes/cedille { cedille = pkgs.cedille; };
 

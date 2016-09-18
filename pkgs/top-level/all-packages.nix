@@ -17537,7 +17537,7 @@ in
 
     gist = callPackage ../applications/editors/emacs-modes/gist { };
 
-    haskellMode = callPackage ../applications/editors/emacs-modes/haskell { };
+    haskellMode = emacsPackagesNg.haskell-mode;
 
     hsc3Mode = callPackage ../applications/editors/emacs-modes/hsc3 { };
 

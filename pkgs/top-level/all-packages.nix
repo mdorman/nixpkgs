@@ -17620,7 +17620,7 @@ in
 
     tuaregMode = callPackage ../applications/editors/emacs-modes/tuareg { };
 
-    writeGood = callPackage ../applications/editors/emacs-modes/writegood { };
+    writeGood = emacsPackageNg.writegood-mode;
 
     xmlRpc = callPackage ../applications/editors/emacs-modes/xml-rpc { };
 

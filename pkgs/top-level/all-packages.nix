@@ -17561,7 +17561,7 @@ in
 
     let-alist = emacsPackageNg.let-alist;
 
-    logito = callPackage ../applications/editors/emacs-modes/logito { };
+    logito = emacsPackageNg.logito;
 
     loremIpsum = callPackage ../applications/editors/emacs-modes/lorem-ipsum { };
 

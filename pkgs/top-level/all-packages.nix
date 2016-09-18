@@ -17545,7 +17545,7 @@ in
 
     htmlize = callPackage ../applications/editors/emacs-modes/htmlize { };
 
-    ido-ubiquitous = callPackage ../applications/editors/emacs-modes/ido-ubiquitous { };
+    ido-ubiquitous = emacsPackagesNg.ido-ubiquitous;
 
     icicles = callPackage ../applications/editors/emacs-modes/icicles { };
 

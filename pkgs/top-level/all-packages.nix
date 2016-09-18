@@ -17622,7 +17622,7 @@ in
 
     writeGood = emacsPackageNg.writegood-mode;
 
-    xmlRpc = callPackage ../applications/editors/emacs-modes/xml-rpc { };
+    xmlRpc = emacsPackagesNg.xml-rpc;
 
     cask = callPackage ../applications/editors/emacs-modes/cask { };
   };

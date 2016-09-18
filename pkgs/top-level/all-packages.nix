@@ -17607,7 +17607,7 @@ in
 
     rudel = callPackage ../applications/editors/emacs-modes/rudel { };
 
-    s = callPackage ../applications/editors/emacs-modes/s { };
+    s = emacsPackagesNg.s;
 
     sbtMode = callPackage ../applications/editors/emacs-modes/sbt-mode { };
 

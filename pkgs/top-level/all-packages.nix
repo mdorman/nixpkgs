@@ -17503,7 +17503,7 @@ in
 
     colorTheme = emacsPackagesNg.color-theme;
 
-    colorThemeSolarized = callPackage ../applications/editors/emacs-modes/color-theme-solarized { };
+    colorThemeSolarized = emacsPackagesNg.color-theme-solarized;
 
     cryptol = callPackage ../applications/editors/emacs-modes/cryptol { };
 

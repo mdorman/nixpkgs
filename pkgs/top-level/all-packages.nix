@@ -17559,7 +17559,7 @@ in
 
     js2 = emacsPackageNg.js2;
 
-    let-alist = callPackage ../applications/editors/emacs-modes/let-alist { };
+    let-alist = emacsPackageNg.let-alist;
 
     logito = callPackage ../applications/editors/emacs-modes/logito { };
 

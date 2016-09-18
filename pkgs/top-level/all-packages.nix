@@ -17531,8 +17531,8 @@ in
 
     flymakeCursor = callPackage ../applications/editors/emacs-modes/flymake-cursor { };
 
-
-    graphvizDot = callPackage ../applications/editors/emacs-modes/graphviz-dot { };
+    graphvizDot = emacsPackagesNg.graphviz-dot;
+ 
     gh = emacsPackagesNg.gh;
 
     gist = callPackage ../applications/editors/emacs-modes/gist { };

@@ -17499,7 +17499,7 @@ in
 
     cedille = callPackage ../applications/editors/emacs-modes/cedille { cedille = pkgs.cedille; };
 
-    coffee = callPackage ../applications/editors/emacs-modes/coffee { };
+    coffee = emacsPackagesNg.coffee-mode;
 
     colorTheme = callPackage ../applications/editors/emacs-modes/color-theme { };
 

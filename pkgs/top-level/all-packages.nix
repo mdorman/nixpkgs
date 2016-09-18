@@ -17527,7 +17527,7 @@ in
 
     erlangMode = callPackage ../applications/editors/emacs-modes/erlang { };
 
-    ess = callPackage ../applications/editors/emacs-modes/ess { };
+    ess = emacsPackagesNg.ess;
 
     flymakeCursor = callPackage ../applications/editors/emacs-modes/flymake-cursor { };
 

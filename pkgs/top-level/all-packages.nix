@@ -17557,7 +17557,7 @@ in
 
     jdee = callPackage ../applications/editors/emacs-modes/jdee { };
 
-    js2 = callPackage ../applications/editors/emacs-modes/js2 { };
+    js2 = emacsPackageNg.js2;
 
     let-alist = callPackage ../applications/editors/emacs-modes/let-alist { };
 

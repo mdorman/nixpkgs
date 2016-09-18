@@ -17501,7 +17501,7 @@ in
 
     coffee = emacsPackagesNg.coffee-mode;
 
-    colorTheme = callPackage ../applications/editors/emacs-modes/color-theme { };
+    colorTheme = emacsPackagesNg.color-theme;
 
     colorThemeSolarized = callPackage ../applications/editors/emacs-modes/color-theme-solarized { };
 

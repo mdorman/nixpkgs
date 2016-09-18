@@ -17523,7 +17523,7 @@ in
 
     emms = callPackage ../applications/editors/emacs-modes/emms { };
 
-    ensime = callPackage ../applications/editors/emacs-modes/ensime { };
+    ensime = emacsPackagesNg.ensime;
 
     erlangMode = callPackage ../applications/editors/emacs-modes/erlang { };
 

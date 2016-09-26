@@ -17618,7 +17618,7 @@ in
 
     sunriseCommander = callPackage ../applications/editors/emacs-modes/sunrise-commander { };
 
-    tuaregMode = callPackage ../applications/editors/emacs-modes/tuareg { };
+    tuaregMode = emacsPackageNg.tuareg;
 
     writeGood = emacsPackageNg.writegood-mode;
 

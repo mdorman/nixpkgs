@@ -22891,6 +22891,8 @@ with pkgs;
 
   openfst = callPackage ../development/libraries/openfst {};
 
+  my-packages = callPackage ../my-packages {};
+
   duti = callPackage ../os-specific/darwin/duti {};
 
   dnstracer = callPackage ../tools/networking/dnstracer {

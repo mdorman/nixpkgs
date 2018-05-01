@@ -52,6 +52,26 @@ let
     doCheck = false;
   };
 
+  gscan2pdf = buildPerlPackage rec {
+    name = "gscan2pdf-2.0.1";
+    src = fetchurl {
+      url = "mirror://sourceforge/gscan2pdf/${name}.tar.xz";
+      sha256 = "04dv18l59lbn78pjqjrr2d63ra29y14541gaplyy3a8krn531kkr";
+    };
+    outputs = ["out"];
+    buildInputs = [ DataUUID HTMLParser ProcProcessTable SubOverride pkgs.imagemagick ];
+    propagatedBuildInputs = [ ConfigGeneral DateCalc FilesysDf Glib GooCanvas2 Gtk3 Gtk3SimpleList ImageSane ListMoreUtils LocaleGettext LogLog4perl PerlMagick PDFAPI2 Readonly SetIntSpan TryTiny pkgs.imagemagick ];
+    meta = with stdenv.lib; {
+      description = "A GUI to produce PDFs or DjVus from scanned documents";
+      homepage    = http://gscan2pdf.sourceforge.net/;
+      license     = "unknown";
+      maintainers = with maintainers; [ mdorman ];
+      platforms   = platforms.unix;
+    };
+    # tests fail because they expect a GUI environment
+    doCheck = false;
+  };
+
   AlgorithmAnnotate = buildPerlPackage {
     name = "Algorithm-Annotate-0.10";
     src = fetchurl {
@@ -1030,6 +1050,20 @@ let
       license = stdenv.lib.licenses.lgpl21Plus;
     };
     propagatedBuildInputs = [ ExtUtilsDepends ExtUtilsPkgConfig ];
+  };
+
+  CairoGObject = buildPerlPackage rec {
+    name = "Cairo-GObject-1.004";
+    src = fetchurl {
+      url = "mirror://cpan/authors/id/X/XA/XAOC/${name}.tar.gz";
+      sha256 = "3bb9d40e802e51f56f1364abc553758152131803c12d85ba6e14bad6813409d5";
+    };
+    propagatedBuildInputs = [ Cairo ExtUtilsDepends ExtUtilsPkgConfig Glib pkgs.cairo ];
+    meta = {
+      homepage = http://gtk2-perl.sourceforge.net/;
+      description = "Integrate Cairo into the Glib type system";
+      license = stdenv.lib.licenses.lgpl21Plus;
+    };
   };
 
   cam_pdf = buildPerlModule rec {
@@ -6081,6 +6115,17 @@ let
     };
   };
 
+  FilesysDf = buildPerlPackage rec {
+    name = "Filesys-Df-0.92";
+    src = fetchurl {
+      url = "mirror://cpan/authors/id/I/IG/IGUTHRIE/${name}.tar.gz";
+      sha256 = "fe89cbb427e0e05f1cd97c2dd6d3866ac6b21bc7a85734ede159bdc35479552a";
+    };
+    meta = {
+      license = "unknown";
+    };
+  };
+
   FilesysNotifySimple = buildPerlPackage {
     name = "Filesys-Notify-Simple-0.13";
     src = fetchurl {
@@ -6501,6 +6546,20 @@ let
     propagatedBuildInputs = [ ExtUtilsDepends ExtUtilsPkgConfig ];
   };
 
+  GlibObjectIntrospection = buildPerlPackage rec {
+    name = "Glib-Object-Introspection-0.044";
+    src = fetchurl {
+      url = "mirror://cpan/authors/id/X/XA/XAOC/${name}.tar.gz";
+      sha256 = "093c47141db683bf8dcbf1c3e7b2ece2b2b5488739197b8b623f50838eb7e734";
+    };
+    propagatedBuildInputs = [ ExtUtilsDepends ExtUtilsPkgConfig Glib pkgs.gobjectIntrospection ];
+    meta = {
+      homepage = http://gtk2-perl.sourceforge.net;
+      description = "Dynamically create Perl language bindings";
+      license = "unknown";
+    };
+  };
+
   Gnome2 = buildPerlPackage rec {
     name = "Gnome2-1.047";
     src = fetchurl {
@@ -6607,6 +6666,19 @@ let
     meta = {
       description = "Perl interface to the GooCanvas";
       license = with stdenv.lib.licenses; [ artistic1 gpl1Plus ];
+    };
+  };
+
+  GooCanvas2 = buildPerlPackage rec {
+    name = "GooCanvas2-0.06";
+    src = fetchurl {
+      url = "mirror://cpan/authors/id/P/PE/PERLMAX/${name}.tar.gz";
+      sha256 = "e24c87873e19063dd4d5e2c709caacf8c0ae8881044395bb865dc2b4fdd63b50";
+    };
+    propagatedBuildInputs = [ Gtk3 pkgs.goocanvas2.dev pkgs.goocanvas2 ];
+    meta = {
+      description = "Perl binding for GooCanvas2 widget using Glib::Object::Introspection";
+      license = "unknown";
     };
   };
 
@@ -6777,6 +6849,34 @@ let
     meta = {
       description = "Use single instance applications";
       license = with stdenv.lib.licenses; [ artistic1 gpl1Plus ];
+    };
+  };
+
+  Gtk3 = buildPerlPackage rec {
+    name = "Gtk3-0.033";
+    src = fetchurl {
+      url = "mirror://cpan/authors/id/X/XA/XAOC/${name}.tar.gz";
+      sha256 = "e18c9c4d860cf29c9b0fe9d2e2c6d342646c179f4dd7d787b3d0183932e10e93";
+    };
+    propagatedBuildInputs = [ CairoGObject Glib pkgs.gtk3 GlibObjectIntrospection ];
+    meta = {
+      homepage = http://gtk2-perl.sourceforge.net;
+      description = "Perl interface to the 3.x series of the gtk+ toolkit";
+      license = stdenv.lib.licenses.lgpl21Plus;
+    };
+  };
+
+  Gtk3SimpleList = buildPerlPackage rec {
+    name = "Gtk3-SimpleList-0.17";
+    src = fetchurl {
+      url = "mirror://cpan/authors/id/T/TV/TVIGNAUD/${name}.tar.gz";
+      sha256 = "ed201f74a9ff3542b7cc260159e87ca5894c24a5b182a39d6f86bb84669c9053";
+    };
+    propagatedBuildInputs = [ Gtk3 ];
+    meta = {
+      homepage = https://github.com/potyl/perl-Gtk3-SimpleList;
+      description = "A simple interface to Gtk3's complex MVC list widget";
+      license = "unknown";
     };
   };
 
@@ -7511,6 +7611,20 @@ let
     meta = {
       description = "Extract meta information from image files";
       license = with stdenv.lib.licenses; [ artistic1 gpl1Plus ];
+    };
+  };
+
+  ImageSane = buildPerlPackage rec {
+    name = "Image-Sane-0.14";
+    src = fetchurl {
+      url = "mirror://cpan/authors/id/R/RA/RATCLIFFE/${name}.tar.gz";
+      sha256 = "a4b027c9b7650291f1acb0eb93861a7fc45aef4e08f6726843f174fa113c8ba5";
+    };
+    buildInputs = [ ExtUtilsDepends ExtUtilsPkgConfig TestRequires TryTiny pkgs.sane-backends ];
+    propagatedBuildInputs = [ ExceptionClass Readonly ];
+    meta = {
+      description = "Perl extension for the SANE (Scanner Access Now Easy) Project";
+      license = "unknown";
     };
   };
 

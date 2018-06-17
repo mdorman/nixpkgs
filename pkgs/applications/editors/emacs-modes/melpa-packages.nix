@@ -23,6 +23,10 @@ self:
       "swbuff-x" # required dependency swbuff is missing
     ];
 
+    addBuildDepends = pkg: xs: pkg.overrideAttrs (attrs: {
+      nativeBuildInputs = (attrs.nativeBuildInputs or []) ++ xs;
+    });
+
     dontConfigure = pkg: pkg.override (args: {
       melpaBuild = drv: args.melpaBuild (drv // {
         configureScript = "true";
@@ -129,27 +133,17 @@ self:
       # upstream issue: missing file header
       jsfmt = markBroken super.jsfmt;
 
+      # Needs git executable
+      kubernetes = addBuildDepends super.kubernetes [external.git];
+
       # upstream issue: missing file header
       maxframe = markBroken super.maxframe;
 
-      magit =
-        super.magit.overrideAttrs (attrs: {
-          # searches for Git at build time
-          nativeBuildInputs =
-            (attrs.nativeBuildInputs or []) ++ [ external.git ];
-        });
+      magit = addBuildDepends super.magit [external.git];
 
-      magit-annex = super.magit-annex.overrideAttrs (attrs: {
-        # searches for Git at build time
-        nativeBuildInputs =
-          (attrs.nativeBuildInputs or []) ++ [ external.git ];
-      });
+      magit-annex = addBuildDepends super.magit-annex [external.git];
 
-      magit-gitflow = super.magit-gitflow.overrideAttrs (attrs: {
-        # searches for Git at build time
-        nativeBuildInputs =
-          (attrs.nativeBuildInputs or []) ++ [ external.git ];
-      });
+      magit-gitflow = addBuildDepends super.magit-gitflow [external.git];
 
       magithub = super.magithub.overrideAttrs (attrs: {
         # searches for Git at build time

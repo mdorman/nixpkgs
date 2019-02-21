@@ -1245,6 +1245,10 @@ self: super: {
   # we don't have in LTS-13.x.
   tasty-hedgehog = super.tasty-hedgehog.override { hedgehog = self.hedgehog_1_0; };
 
+# Needs a newer version than what's in stackage
+  imm = super.imm.override { opml-conduit = self.opml-conduit_0_7_0_0; };
+
+
   # The latest release version is ancient. You really need this tool from git.
   haskell-ci = generateOptparseApplicativeCompletion "haskell-ci"
     (addBuildDepend (overrideSrc (dontCheck super.haskell-ci) {

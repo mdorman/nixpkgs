@@ -18515,6 +18515,10 @@ in
 
   imgcat = callPackage ../applications/graphics/imgcat { };
 
+  imm-with-packages = callPackage ../applications/misc/imm {
+    inherit (haskellPackages) ghcWithPackages;
+  };
+
   # Impressive, formerly known as "KeyJNote".
   impressive = callPackage ../applications/office/impressive { };
 

@@ -1174,6 +1174,26 @@ self: super: {
   # https://github.com/mgajda/json-autotype/issues/25
   json-autotype = dontCheck super.json-autotype;
 
+  # I'm just keeping this around in case this patch accidentally gets
+  # dropped from the main gtk+ expression again
+  #
+  # # 3.24.3: https://gitlab.gnome.org/GNOME/gtk/merge_requests/505
+  # local-gtk = pkgs.gnome3.gtk3.overrideAttrs (oa: {
+  #   patches = oa.patches ++ [
+  #     (pkgs.fetchpatch {
+  #       # missing symbols but exported from gir
+  #       url = https://gitlab.gnome.org/GNOME/gtk/commit/95c0f07295fd300ab7f3416a39290ae33585ea6c.patch;
+  #       sha256 = "0z9w7f39xcn1cbcd8jhx731vq64nvi5q6kyc86bq8r00daysjwnl";
+  #     })
+  #   ];
+  # });
+  # gi-dbusmenugtk3 = super.gi-dbusmenugtk3.override { gtk3 = self.local-gtk; };
+  # gi-gdk = super.gi-gdk.override { gtk3 = self.local-gtk; };
+  # gi-gdkx11 = super.gi-gdkx11.override { gtk3 = self.local-gtk; };
+  # gi-gtk = super.gi-gtk.override { gtk3 = self.local-gtk; };
+  # gtk-sni-tray = super.gtk-sni-tray.override { gtk3 = self.local-gtk; };
+  # termonad = super.termonad.override { gtk3 = self.local-gtk; };
+
   # The LTS-13.x version doesn't suffice to build hlint, hoogle, etc.
   hlint = super.hlint.overrideScope (self: super: { haskell-src-exts = self.haskell-src-exts_1_21_0; });
   hoogle = super.hoogle.overrideScope (self: super: { haskell-src-exts = self.haskell-src-exts_1_21_0; });

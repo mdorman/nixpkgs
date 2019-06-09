@@ -17495,15 +17495,15 @@ in
 
     cedet = callPackage ../applications/editors/emacs-modes/cedet { };
 
-    calfw = callPackage ../applications/editors/emacs-modes/calfw { };
+    calfw = emacsPackagesNg.calfw;
 
     cedille = callPackage ../applications/editors/emacs-modes/cedille { cedille = pkgs.cedille; };
 
-    coffee = callPackage ../applications/editors/emacs-modes/coffee { };
+    coffee = emacsPackagesNg.coffee-mode;
 
-    colorTheme = callPackage ../applications/editors/emacs-modes/color-theme { };
+    colorTheme = emacsPackagesNg.color-theme;
 
-    colorThemeSolarized = callPackage ../applications/editors/emacs-modes/color-theme-solarized { };
+    colorThemeSolarized = emacsPackagesNg.color-theme-solarized;
 
     cryptol = callPackage ../applications/editors/emacs-modes/cryptol { };
 
@@ -17523,21 +17523,21 @@ in
 
     emms = callPackage ../applications/editors/emacs-modes/emms { };
 
-    ensime = callPackage ../applications/editors/emacs-modes/ensime { };
+    ensime = emacsPackagesNg.ensime;
 
     erlangMode = callPackage ../applications/editors/emacs-modes/erlang { };
 
-    ess = callPackage ../applications/editors/emacs-modes/ess { };
+    ess = emacsPackagesNg.ess;
 
     flymakeCursor = callPackage ../applications/editors/emacs-modes/flymake-cursor { };
 
-    gh = callPackage ../applications/editors/emacs-modes/gh { };
-
-    graphvizDot = callPackage ../applications/editors/emacs-modes/graphviz-dot { };
+    graphvizDot = emacsPackagesNg.graphviz-dot;
+ 
+    gh = emacsPackagesNg.gh;
 
     gist = callPackage ../applications/editors/emacs-modes/gist { };
 
-    haskellMode = callPackage ../applications/editors/emacs-modes/haskell { };
+    haskellMode = emacsPackagesNg.haskell-mode;
 
     hsc3Mode = callPackage ../applications/editors/emacs-modes/hsc3 { };
 
@@ -17545,7 +17545,7 @@ in
 
     htmlize = callPackage ../applications/editors/emacs-modes/htmlize { };
 
-    ido-ubiquitous = callPackage ../applications/editors/emacs-modes/ido-ubiquitous { };
+    ido-ubiquitous = emacsPackagesNg.ido-ubiquitous;
 
     icicles = callPackage ../applications/editors/emacs-modes/icicles { };
 
@@ -17557,11 +17557,11 @@ in
 
     jdee = callPackage ../applications/editors/emacs-modes/jdee { };
 
-    js2 = callPackage ../applications/editors/emacs-modes/js2 { };
+    js2 = emacsPackageNg.js2;
 
-    let-alist = callPackage ../applications/editors/emacs-modes/let-alist { };
+    let-alist = emacsPackageNg.let-alist;
 
-    logito = callPackage ../applications/editors/emacs-modes/logito { };
+    logito = emacsPackageNg.logito;
 
     loremIpsum = callPackage ../applications/editors/emacs-modes/lorem-ipsum { };
 
@@ -17585,7 +17585,7 @@ in
 
     org2blog = callPackage ../applications/editors/emacs-modes/org2blog { };
 
-    pcache = callPackage ../applications/editors/emacs-modes/pcache { };
+    pcache = emacsPackageNg.pcache;
 
     phpMode = callPackage ../applications/editors/emacs-modes/php { };
 
@@ -17607,7 +17607,7 @@ in
 
     rudel = callPackage ../applications/editors/emacs-modes/rudel { };
 
-    s = callPackage ../applications/editors/emacs-modes/s { };
+    s = emacsPackagesNg.s;
 
     sbtMode = callPackage ../applications/editors/emacs-modes/sbt-mode { };
 
@@ -17618,11 +17618,11 @@ in
 
     sunriseCommander = callPackage ../applications/editors/emacs-modes/sunrise-commander { };
 
-    tuaregMode = callPackage ../applications/editors/emacs-modes/tuareg { };
+    tuaregMode = emacsPackageNg.tuareg;
 
-    writeGood = callPackage ../applications/editors/emacs-modes/writegood { };
+    writeGood = emacsPackageNg.writegood-mode;
 
-    xmlRpc = callPackage ../applications/editors/emacs-modes/xml-rpc { };
+    xmlRpc = emacsPackagesNg.xml-rpc;
 
     cask = callPackage ../applications/editors/emacs-modes/cask { };
   };
@@ -18514,6 +18514,10 @@ in
   img2pdf = callPackage ../applications/misc/img2pdf { };
 
   imgcat = callPackage ../applications/graphics/imgcat { };
+
+  imm-with-packages = callPackage ../applications/misc/imm {
+    inherit (haskellPackages) ghcWithPackages;
+  };
 
   # Impressive, formerly known as "KeyJNote".
   impressive = callPackage ../applications/office/impressive { };
@@ -24139,6 +24143,8 @@ in
   xtermcontrol = callPackage ../applications/misc/xtermcontrol {};
 
   openfst = callPackage ../development/libraries/openfst {};
+
+  my-packages = callPackage ../my-packages {};
 
   duti = callPackage ../os-specific/darwin/duti {};
 

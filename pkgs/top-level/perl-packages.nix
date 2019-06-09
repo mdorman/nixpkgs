@@ -89,6 +89,26 @@ let
     doCheck = false;
   };
 
+  gscan2pdf = buildPerlPackage rec {
+    name = "gscan2pdf-2.0.1";
+    src = fetchurl {
+      url = "mirror://sourceforge/gscan2pdf/${name}.tar.xz";
+      sha256 = "04dv18l59lbn78pjqjrr2d63ra29y14541gaplyy3a8krn531kkr";
+    };
+    outputs = ["out"];
+    buildInputs = [ DataUUID HTMLParser ProcProcessTable SubOverride pkgs.imagemagick ];
+    propagatedBuildInputs = [ ConfigGeneral DateCalc FilesysDf Glib GooCanvas2 Gtk3 Gtk3SimpleList ImageSane ListMoreUtils LocaleGettext LogLog4perl PerlMagick PDFAPI2 Readonly SetIntSpan TryTiny pkgs.imagemagick ];
+    meta = with stdenv.lib; {
+      description = "A GUI to produce PDFs or DjVus from scanned documents";
+      homepage    = http://gscan2pdf.sourceforge.net/;
+      license     = "unknown";
+      maintainers = with maintainers; [ mdorman ];
+      platforms   = platforms.unix;
+    };
+    # tests fail because they expect a GUI environment
+    doCheck = false;
+  };
+
   AlgorithmAnnotate = buildPerlPackage {
     name = "Algorithm-Annotate-0.10";
     src = fetchurl {

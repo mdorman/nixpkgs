@@ -22,6 +22,10 @@ self:
 
     super = imported;
 
+    addBuildDepends = pkg: xs: pkg.overrideAttrs (attrs: {
+      nativeBuildInputs = (attrs.nativeBuildInputs or []) ++ xs;
+    });
+
     dontConfigure = pkg: pkg.override (args: {
       melpaBuild = drv: args.melpaBuild (drv // {
         configureScript = "true";
@@ -125,22 +129,28 @@ self:
       # upstream issue: missing file header
       jsfmt = markBroken super.jsfmt;
 
+      # Needs git executable
+      kubernetes = addBuildDepends super.kubernetes [external.git];
+
       # upstream issue: missing file header
       link = markBroken super.link;
 
       # upstream issue: missing file header
       maxframe = markBroken super.maxframe;
 
-      magit =
+      magit = addBuildDepends
         (super.magit.override {
           # version of magit-popup needs to match magit
           # https://github.com/magit/magit/issues/3286
           inherit (self.melpaStablePackages) magit-popup;
-        }).overrideAttrs (attrs: {
-          # searches for Git at build time
-          nativeBuildInputs =
-            (attrs.nativeBuildInputs or []) ++ [ external.git ];
-        });
+        }) [external.git];
+
+      magit-annex = addBuildDepends super.magit-annex [external.git];
+
+      magit-gitflow = addBuildDepends super.magit-gitflow [external.git];
+
+      # Needs git executable
+      magithub = addBuildDepends super.magithub [external.git];
 
       magit-todos = super.magit-todos.overrideAttrs (attrs: {
         # searches for Git at build time

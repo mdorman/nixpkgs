@@ -1,6 +1,7 @@
 { lib
 , callPackage
 , fetchFromGitHub
+, fetchpatch
 }:
 /*
 ** To customize the enabled beets plugins, use the pluginOverrides input to the
@@ -18,7 +19,7 @@
 lib.makeExtensible (self: {
   beets = self.beets-stable;
 
-  beets-stable = callPackage ./common.nix rec {
+  beets-stable = (callPackage ./common.nix rec {
     version = "1.6.0";
     src = fetchFromGitHub {
       owner = "beetbox";
@@ -26,7 +27,15 @@ lib.makeExtensible (self: {
       rev = "v${version}";
       hash = "sha256-fT+rCJJQR7bdfAcmeFRaknmh4ZOP4RCx8MXpq7/D8tM=";
     };
-  };
+  }).overrideAttrs (prev: {
+    patches = prev.patches ++ [
+      (fetchpatch {
+        name = "fix-unicode-in-test-paths.patch";
+        url = "https://github.com/beetbox/beets/commit/5ae1e0f3c8d3a450cb39f7933aa49bb78c2bc0d9.patch";
+        sha256 = "sha256-gqkrE+U1j3tt1qPRJufTGS/GftaSw/gweXunO/mCVG8=";
+      })
+    ];
+  });
 
   beets-minimal = self.beets.override { disableAllPlugins = true; };
 

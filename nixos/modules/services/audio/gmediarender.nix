@@ -44,6 +44,14 @@ in
       '';
     };
 
+    openFirewall = lib.mkOption {
+      type = lib.types.bool;
+      default = false;
+      description = ''
+        Whether to automatically open the appropriate ports in the firewall. (1900 and whatever value is specified in port)
+      '';
+    };
+
     package = lib.mkPackageOption pkgs "gmediarender" {
       default = "gmrender-resurrect";
     };
@@ -128,5 +136,7 @@ in
         };
       };
     };
+    networking.firewall.allowedTCPPorts = lib.optionals cfg.openFirewall (if cfg.port != null then [cfg.port] else [49494]);
+    networking.firewall.allowedUDPPorts = lib.optionals cfg.openFirewall ([ 1900 ]);
   };
 }

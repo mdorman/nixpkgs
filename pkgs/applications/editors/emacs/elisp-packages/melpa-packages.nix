@@ -229,12 +229,6 @@ let
         flycheck-rtags = fix-rtags super.flycheck-rtags;
 
         pdf-tools = super.pdf-tools.overrideAttrs (old: {
-          # Temporary work around for:
-          #   - https://github.com/vedang/pdf-tools/issues/102
-          #   - https://github.com/vedang/pdf-tools/issues/103
-          #   - https://github.com/vedang/pdf-tools/issues/109
-          CXXFLAGS = "-std=c++17";
-
           nativeBuildInputs = old.nativeBuildInputs ++ [
             pkgs.autoconf
             pkgs.automake
@@ -259,7 +253,7 @@ let
           '';
           recipe = pkgs.writeText "recipe" ''
             (pdf-tools
-            :repo "politza/pdf-tools" :fetcher github
+            :repo "vedang/pdf-tools" :fetcher github
             :files ("lisp/pdf-*.el" "server/epdfinfo"))
           '';
         });

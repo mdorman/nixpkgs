@@ -271,7 +271,7 @@ let
           '';
           recipe = pkgs.writeText "recipe" ''
             (pdf-tools
-            :repo "politza/pdf-tools" :fetcher github
+            :repo "vedang/pdf-tools" :fetcher github
             :files ("lisp/pdf-*.el" "server/epdfinfo"))
           '';
         });

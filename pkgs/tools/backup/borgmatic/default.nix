@@ -13,11 +13,11 @@
 
 python3Packages.buildPythonApplication rec {
   pname = "borgmatic";
-  version = "1.8.1";
+  version = "1.8.5";
 
   src = fetchPypi {
     inherit pname version;
-    sha256 = "sha256-XbihTQJtoiRRfwjMCP+XEPmbt7//zFPx1fIWOvn92Nc=";
+    sha256 = "sha256-XkiHrbT99IALu5T6roNS9vS+EoKa7CFGGCJO8wWll9g=";
   };
 
   nativeCheckInputs = with python3Packages; [ flexmock pytestCheckHook pytest-cov ];
@@ -31,6 +31,7 @@ python3Packages.buildPythonApplication rec {
   nativeBuildInputs = [ installShellFiles ];
 
   propagatedBuildInputs = with python3Packages; [
+    apprise
     borgbackup
     colorama
     jsonschema

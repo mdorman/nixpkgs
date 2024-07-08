@@ -21,7 +21,7 @@
 , ode
 , opencascade-occt_7_6
 , pkg-config
-, python3Packages
+, python311Packages
 , runCommand  # for passthru.tests
 , spaceNavSupport ? stdenv.isLinux
 , stdenv
@@ -33,6 +33,7 @@
 }:
 
 let
+  python3Packages = python311Packages;
   opencascade-occt = opencascade-occt_7_6;
   boost = python3Packages.boost;
   inherit (libsForQt5)

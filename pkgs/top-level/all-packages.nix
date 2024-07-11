@@ -13454,7 +13454,7 @@ with pkgs;
 
   whatweb = callPackage ../tools/security/whatweb { };
 
-  whipper = callPackage ../applications/audio/whipper { };
+  whipper = callPackage ../applications/audio/whipper { python3 = python311; };
 
   whitebophir = callPackage ../servers/web-apps/whitebophir { };
 

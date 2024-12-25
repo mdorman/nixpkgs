@@ -67,6 +67,11 @@ stdenv.mkDerivation rec {
     lib.optionals stdenv.cc.isClang [
       "-Wno-error=incompatible-function-pointer-types"
       "-Wno-error=int-conversion"
+    ] ++
+    lib.optionals stdenv.cc.isGNU [
+      "-Wno-error=implicit-function-declaration"
+      "-Wno-error=incompatible-pointer-types"
+      "-Wno-error=int-conversion"
     ]
   );
 

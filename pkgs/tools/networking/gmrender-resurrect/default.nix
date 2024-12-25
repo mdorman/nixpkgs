@@ -37,6 +37,12 @@ stdenv.mkDerivation {
     sha256 = "sha256-Zt8YYRqqX5L/MGLsFzR8JOdYoNX9ypXLX5i+fqkzPkk=";
   };
 
+  env.NIX_CFLAGS_COMPILE = toString (
+    lib.optionals stdenv.cc.isGNU [
+      "-Wno-error=incompatible-pointer-types"
+    ]
+  );
+
   buildInputs = [
     gstreamer
     libupnp

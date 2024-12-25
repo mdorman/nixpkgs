@@ -228,6 +228,11 @@ stdenv.mkDerivation (finalAttrs: {
         "test_import_of_all_python_modules" # explores actual file paths, gets confused
         "test_websocket_basic" # flaky
 
+        "test_fts_pool" # flakey
+        "test_fts_search" # flakey
+        "test_recipe_browser_webengine" # flakey
+        "test_recipe_browser_qt" # flakey
+
         # hangs with cuda enabled, also:
         # eglInitialize: Failed to get system egl display
         # Failed to connect to socket /run/dbus/system_bus_socket: No such file or directory

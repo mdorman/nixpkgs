@@ -26,6 +26,7 @@ lib.fix (self: python3.override {
         src = src.override {
           rev = "refs/tags/v${new.version}";
           hash = "sha256-ID5OJdARd2N2GYEpcYOpxenpZlhWnWr5fAClAgqEgGg=";
+          tag = null;
         };
       });
     })

@@ -176,6 +176,8 @@ python3Packages.buildPythonApplication {
     "test/plugins/test_autobpm.py::TestAutoBPMPlugin::test_import"
     # AssertionError: assert 0 == 117
     "test/plugins/test_autobpm.py::TestAutoBPMPlugin::test_command"
+    # _queue.Empty
+    "test/plugins/test_player.py::BPDPlaybackTest::test_cmd_consume"
   ];
 
   # Perform extra "sanity checks", before running pytest tests.

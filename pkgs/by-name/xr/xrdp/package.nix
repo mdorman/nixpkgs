@@ -12,7 +12,7 @@
   openssl,
   systemd,
   pam,
-  fuse3,
+  fuse,
   libdrm,
   libjpeg,
   libopus,
@@ -29,13 +29,13 @@
 let
   xorgxrdp = stdenv.mkDerivation rec {
     pname = "xorgxrdp";
-    version = "0.10.4";
+    version = "0.10.2";
 
     src = fetchFromGitHub {
       owner = "neutrinolabs";
       repo = "xorgxrdp";
       rev = "v${version}";
-      hash = "sha256-TuzUerfOn8+3YfueG00IBP9sMpvy2deyL16mWQ8cRHg=";
+      hash = "sha256-xwkGY9dD747kyTvoXrYAIoiFBzQe5ngskUYQhDawnbU=";
     };
 
     nativeBuildInputs = [
@@ -74,7 +74,7 @@ let
 
   xrdp = stdenv.mkDerivation rec {
     pname = "xrdp";
-    version = "0.10.3";
+    version = "0.10.1";
 
     src = applyPatches {
       inherit version;
@@ -85,7 +85,7 @@ let
         repo = "xrdp";
         rev = "v${version}";
         fetchSubmodules = true;
-        hash = "sha256-6QSz0a0ed1UxfYYibehPgGUzU/xf1HmqEvVE4xU5hRg=";
+        hash = "sha256-lqifQJ/JX+0304arVctsEBEDFPhEPn2OWLyjAQW1who=";
       };
     };
 
@@ -100,7 +100,7 @@ let
     ];
 
     buildInputs = [
-      fuse3
+      fuse
       lame
       libjpeg
       libjpeg_turbo

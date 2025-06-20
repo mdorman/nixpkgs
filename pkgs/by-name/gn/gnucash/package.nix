@@ -4,7 +4,7 @@
   fetchFromGitHub,
   fetchurl,
   aqbanking,
-  boost,
+  boost186,
   cmake,
   gettext,
   glib,
@@ -55,7 +55,7 @@ stdenv.mkDerivation rec {
   buildInputs =
     [
       aqbanking
-      boost
+      boost186
       glib
       glibcLocales
       gtest

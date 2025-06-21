@@ -9072,7 +9072,9 @@ with pkgs;
     nodejs = nodejs_20;
   };
 
-  mailmanPackages = recurseIntoAttrs (callPackage ../servers/mail/mailman { });
+  mailmanPackages = recurseIntoAttrs (callPackage ../servers/mail/mailman {
+    python3 = python312;
+ });
   inherit (mailmanPackages) mailman mailman-hyperkitty;
   mailman-web = mailmanPackages.web;
 
